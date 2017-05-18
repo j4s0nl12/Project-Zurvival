@@ -1,7 +1,7 @@
-package com.mygdx.game.Screens;
+package com.mygdx.game.screens;
 
 import com.badlogic.gdx.utils.Array;
-import com.mygdx.game.Main.ProjectZurvivalMain;
+import com.mygdx.game.main.ProjectZurvivalMain;
 
 public class ScreenManager {
     final ProjectZurvivalMain game;

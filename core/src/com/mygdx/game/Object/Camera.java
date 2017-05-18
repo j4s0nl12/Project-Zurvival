@@ -1,4 +1,4 @@
-package com.mygdx.game.Object;
+package com.mygdx.game.object;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Matrix4;
@@ -6,7 +6,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-import com.mygdx.game.Utility.Utility;
+import com.mygdx.game.utility.Utility;
 
 public class Camera {
 

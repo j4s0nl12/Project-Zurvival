@@ -1,18 +1,19 @@
-package com.mygdx.game.Screens;
+package com.mygdx.game.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
-import com.mygdx.game.Object.BulletParticle;
-import com.mygdx.game.Object.Image;
-import com.mygdx.game.Main.ProjectZurvivalMain;
+import com.mygdx.game.object.BulletParticle;
+import com.mygdx.game.object.Image;
+import com.mygdx.game.main.ProjectZurvivalMain;
 
 public class MainMenuScreen extends BaseScreen{
 
     Image title;
     Image newgame;
     Image options;
+    Image stats;
 
     Array<BulletParticle> blist;
     Sound srsSound;
@@ -27,10 +28,12 @@ public class MainMenuScreen extends BaseScreen{
         bulletDelay = 80L;
 
         title = new Image(game.util.GAME_WORLD_WIDTH/2,game.util.GAME_WORLD_HEIGHT*3/4,.2f,"Images/MainMenu/Title.png");
-        newgame = new Image(game.util.GAME_WORLD_WIDTH/2, game.util.GAME_WORLD_HEIGHT*4/10, .2f, "Images/MainMenu/New Game.png");
+        newgame = new Image(game.util.GAME_WORLD_WIDTH/2, game.util.GAME_WORLD_HEIGHT*9/20, .2f, "Images/MainMenu/New Game.png");
         newgame.setIsButton(true);
-        options = new Image(game.util.GAME_WORLD_WIDTH/2, game.util.GAME_WORLD_HEIGHT*3/10,.2f, "Images/MainMenu/Options.png");
+        options = new Image(game.util.GAME_WORLD_WIDTH/2, game.util.GAME_WORLD_HEIGHT*6/20,.2f, "Images/MainMenu/Options.png");
         options.setIsButton(true);
+        stats = new Image(game.util.GAME_WORLD_WIDTH/2, game.util.GAME_WORLD_HEIGHT*3/20, .2f, "Images/MainMenu/Statistics.png");
+        stats.setIsButton(true);
     }
 
     @Override
@@ -47,6 +50,7 @@ public class MainMenuScreen extends BaseScreen{
         title.draw(game.util.batch);
         newgame.draw(game.util.batch);
         options.draw(game.util.batch);
+        stats.draw(game.util.batch);
         for(BulletParticle bp : this.blist){
             bp.draw(game.util.batch);
         }

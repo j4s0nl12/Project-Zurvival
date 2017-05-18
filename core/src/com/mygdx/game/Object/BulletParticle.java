@@ -1,4 +1,4 @@
-package com.mygdx.game.Object;
+package com.mygdx.game.object;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;

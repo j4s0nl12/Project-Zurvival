@@ -1,10 +1,10 @@
-package com.mygdx.game.Main;
+package com.mygdx.game.main;
 
 import com.badlogic.gdx.Game;
 
-import com.mygdx.game.Object.Camera;
-import com.mygdx.game.Screens.ScreenManager;
-import com.mygdx.game.Utility.Utility;
+import com.mygdx.game.object.Camera;
+import com.mygdx.game.screens.ScreenManager;
+import com.mygdx.game.utility.Utility;
 
 public class ProjectZurvivalMain extends Game {
 	public static Utility util;

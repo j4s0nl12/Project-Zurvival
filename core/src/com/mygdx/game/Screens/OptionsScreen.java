@@ -1,17 +1,18 @@
-package com.mygdx.game.Screens;
+package com.mygdx.game.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.mygdx.game.Main.ProjectZurvivalMain;
-import com.mygdx.game.Object.Image;
-import com.mygdx.game.Object.NamedSlider;
+import com.mygdx.game.main.ProjectZurvivalMain;
+import com.mygdx.game.object.Image;
+import com.mygdx.game.object.NamedSlider;
 
 public class OptionsScreen extends BaseScreen {
 
     Stage stage;
 
+    Image options;
     Image back;
 
     NamedSlider masterVol;
@@ -20,19 +21,21 @@ public class OptionsScreen extends BaseScreen {
 
     public OptionsScreen(ProjectZurvivalMain gam) {
         super(gam);
-        back = new Image(game.util.GAME_WORLD_WIDTH/2, game.util.GAME_WORLD_HEIGHT*2/10, .2f, "Images/MainMenu/Back.png");
+
+        options = new Image(game.util.GAME_WORLD_WIDTH/2, game.util.GAME_WORLD_HEIGHT*9/10, .8f, "Images/MainMenu/Options.png");
+        back = new Image(game.util.GAME_WORLD_WIDTH/2, game.util.GAME_WORLD_HEIGHT/10, .2f, "Images/MainMenu/Back.png");
         back.setIsButton(true);
 
         stage = new Stage(game.camera.viewport);
 
         masterVol = new NamedSlider(game.util.master_volume_str, "Images/Options/MasterVol.png");
-        masterVol.init(game,game.util.GAME_WORLD_WIDTH/2, game.util.GAME_WORLD_HEIGHT*6/10);
+        masterVol.init(game,game.util.GAME_WORLD_WIDTH/2, game.util.GAME_WORLD_HEIGHT*14/20);
 
         bgmVol = new NamedSlider(game.util.bgm_volume_str, "Images/Options/BGMVol.png");
-        bgmVol.init(game,game.util.GAME_WORLD_WIDTH/2, game.util.GAME_WORLD_HEIGHT/2);
+        bgmVol.init(game,game.util.GAME_WORLD_WIDTH/2, game.util.GAME_WORLD_HEIGHT*11/20);
 
         sfxVol = new NamedSlider(game.util.sfx_volume_str, "Images/Options/SFXVol.png");
-        sfxVol.init(game,game.util.GAME_WORLD_WIDTH/2, game.util.GAME_WORLD_HEIGHT*4/10);
+        sfxVol.init(game,game.util.GAME_WORLD_WIDTH/2, game.util.GAME_WORLD_HEIGHT*8/20);
 
         stage.addActor(masterVol.getSlider());
         stage.addActor(bgmVol.getSlider());
@@ -47,6 +50,7 @@ public class OptionsScreen extends BaseScreen {
         stage.draw();
 
         game.util.batch.begin();
+        options.draw(game.util.batch);
         back.draw(game.util.batch);
         masterVol.draw(game.util.batch);
         bgmVol.draw(game.util.batch);
