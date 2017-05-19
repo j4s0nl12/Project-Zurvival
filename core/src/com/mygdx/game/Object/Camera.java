@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
+import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import com.mygdx.game.utility.Utility;
@@ -20,6 +21,7 @@ public class Camera {
         w = util.GAME_WORLD_WIDTH;
         h = util.GAME_WORLD_HEIGHT;
         camera = new OrthographicCamera();
+        //viewport = new FitViewport(w,h,camera);
         viewport = new ExtendViewport(w, h, camera);
     }
 

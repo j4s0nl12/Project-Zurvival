@@ -7,7 +7,8 @@ public class ScreenManager {
     final ProjectZurvivalMain game;
 
     public final static int MAINMENUSCREEN = 0;
-    public final static int OPTIONSSCREEN = 1;
+    public final static int GAMESCREEN = 1;
+    public final static int OPTIONSSCREEN = 2;
 
     public Array<BaseScreen> screenList;
     public static int lastScreen;
@@ -21,6 +22,7 @@ public class ScreenManager {
 
     public void init(){
         screenList.add(new MainMenuScreen(game));
+        screenList.add(new GameScreen(game));
         screenList.add(new OptionsScreen(game));
 
         lastScreen = MAINMENUSCREEN;

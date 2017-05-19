@@ -24,16 +24,16 @@ public class NamedSlider {
     }
 
     public void init(final ProjectZurvivalMain game, float x, float y){
-        Skin skin = new Skin(Gdx.files.internal("Slider/uiskin.json"));
-        skin.addRegions(new TextureAtlas("Slider/uiskin.atlas"));
+        Skin skin = new Skin(Gdx.files.internal("Skins/Slider/uiskin.json"));
+        skin.addRegions(new TextureAtlas("Skins/Slider/uiskin.atlas"));
         this.slider = new Slider(0,1,0.01f,false,skin);
         this.slider.setValue(game.util.getPref().getFloat(this.key));
         this.slider.setWidth(game.util.GAME_WORLD_WIDTH*3/4);
         this.slider.getStyle().background.setMinHeight(40);
         this.slider.getStyle().knob.setMinHeight(60);
-        this.slider.getStyle().knob.setMinWidth(60);
+        this.slider.getStyle().knob.setMinWidth(40);
         this.slider.setPosition(x, y, 0);
-        this.slider.setAnimateDuration(.3f);
+        this.slider.setAnimateDuration(.1f);
         this.slider.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {

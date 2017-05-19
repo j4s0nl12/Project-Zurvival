@@ -14,7 +14,7 @@ public class BulletParticle {
     public Sprite img;
 
     public BulletParticle(float x, float y) {
-        this.img = new Sprite(new Texture("BulletDent.png"));
+        this.img = new Sprite(new Texture("Images/Particles/BulletDent.png"));
         this.img.setPosition(x - this.img.getWidth()/2, y - this.img.getHeight()/2);
         this.ttl = 1000;
         this.spawnedTime = System.currentTimeMillis();

@@ -18,7 +18,7 @@ public class BaseScreen extends InputAdapter implements Screen {
     private boolean touchDraggedAvailable;
     private Color bgColor;
 
-    private boolean debug;
+    public boolean debug;
 
     public long curTime;
     public long lastTouchedTime;
