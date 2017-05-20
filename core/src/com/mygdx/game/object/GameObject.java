@@ -8,6 +8,7 @@ import com.mygdx.game.utility.Utility;
 
 public class GameObject {
 
+    public int maxHp;
     public int hp;
     public Vector2 pos;
     public Vector2 vel;

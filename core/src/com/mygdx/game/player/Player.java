@@ -9,21 +9,32 @@ public class Player extends GameObject {
 
     public CirclePad leftStick;
     public CirclePad rightStick;
+    public Bar hpBar;
 
     public float angle;
 
     public Player(float posX, float posY, String imgFile){
         super(posX,posY,imgFile);
-        this.hp = 100;
+        this.sprite.scale(1.25f);
+        this.maxHp = 100;
+        this.hp = this.maxHp;
         this.maxAccel = 12f;
         this.accelIncr = this.maxAccel*3f;//Very reponsive, little sliding
 
-        float size = 275f;
+        //Touchpad
+        float tpSize = 275f;
         float leftX = Utility.GAME_WORLD_WIDTH*4/30;
         float rightX = Utility.GAME_WORLD_WIDTH-leftX;
         float height = Utility.GAME_WORLD_HEIGHT*7/30;
-        this.leftStick = new CirclePad(leftX, height, size);
-        this.rightStick = new CirclePad(rightX, height, size);
+        this.leftStick = new CirclePad(leftX, height, tpSize);
+        this.rightStick = new CirclePad(rightX, height, tpSize);
+
+        //Health Bar
+        this.hpBar = new Bar(Utility.GAME_WORLD_WIDTH/30,
+                             Utility.GAME_WORLD_HEIGHT*19/20,
+                             Utility.GAME_WORLD_WIDTH*2/5,
+                             this.maxHp);
+        this.hpBar.setValue(this.hp);
     }
 
     public void update(float delta){
@@ -36,6 +47,7 @@ public class Player extends GameObject {
         this.calcAngle(this.rightStick.getPercentX(), this.rightStick.getPercentY(), delta);
 
         super.update(delta);
+        this.hpBar.setValue(this.hp);
         this.simpleBorder();
         if(!this.leftStick.getTouchpad().isTouched())
             this.friction(delta,this.accelIncr*2);
