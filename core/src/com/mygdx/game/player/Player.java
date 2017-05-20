@@ -1,6 +1,7 @@
 package com.mygdx.game.player;
 
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Vector2;
 import com.mygdx.game.object.GameObject;
 import com.mygdx.game.utility.Utility;
 
@@ -14,8 +15,8 @@ public class Player extends GameObject {
     public Player(float posX, float posY, String imgFile){
         super(posX,posY,imgFile);
         this.hp = 100;
-        this.maxAccel = 20f;
-        this.accelIncr = 20f;
+        this.maxAccel = 12f;
+        this.accelIncr = this.maxAccel*3f;//Very reponsive, little sliding
 
         float size = 275f;
         float leftX = Utility.GAME_WORLD_WIDTH*4/30;
@@ -27,24 +28,17 @@ public class Player extends GameObject {
 
     public void update(float delta){
         //Movement (Left Stick)
-        this.accelX += this.leftStick.getPercentX()*this.accelIncr*delta;
-        if(this.accelX > this.maxAccel)
-            this.accelX = this.maxAccel;
-        else if(this.accelX < -this.maxAccel)
-            this.accelX = -this.maxAccel;
-
-        this.accelY += this.leftStick.getPercentY()*this.accelIncr*delta;
-        if(this.accelY > this.maxAccel)
-            this.accelY = this.maxAccel;
-        else if(this.accelY < -this.maxAccel)
-            this.accelY = -this.maxAccel;
+        Vector2 tmp = new Vector2(this.leftStick.getPercentX(), this.leftStick.getPercentY());
+        tmp.scl(this.accelIncr);
+        this.accel(tmp,delta);
 
         //Rotation (RightStick)
         this.calcAngle(this.rightStick.getPercentX(), this.rightStick.getPercentY(), delta);
 
         super.update(delta);
         this.simpleBorder();
-        this.handleFriciton(delta, this.accelIncr*2);
+        if(!this.leftStick.getTouchpad().isTouched())
+            this.friction(delta,this.accelIncr*2);
     }
 
     public void calcAngle(float x, float y, float delta){
@@ -54,22 +48,5 @@ public class Player extends GameObject {
                 this.angle -= 360;
         }
         this.sprite.setRotation(this.angle);
-    }
-
-    public void handleFriciton(float delta, float f){
-        if(this.leftStick.getPercentX() == 0)
-            this.isMovingX = false;
-        else
-            this.isMovingX = true;
-
-        if(this.leftStick.getPercentY() == 0)
-            this.isMovingY = false;
-        else
-            this.isMovingY = true;
-
-        if(!this.isMovingX)
-            this.frictionX(delta, f);
-        if(!this.isMovingY)
-            this.frictionY(delta, f);
     }
 }
