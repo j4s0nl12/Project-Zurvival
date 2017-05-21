@@ -1,12 +1,12 @@
 package com.mygdx.game.screens;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
-import com.mygdx.game.object.BulletParticle;
+import com.mygdx.game.particles.BulletParticle;
 import com.mygdx.game.object.Image;
 import com.mygdx.game.main.ProjectZurvivalMain;
+import com.mygdx.game.utility.SoundManager;
+import com.mygdx.game.utility.Utility;
 
 public class MainMenuScreen extends BaseScreen{
 
@@ -17,16 +17,13 @@ public class MainMenuScreen extends BaseScreen{
     Image stats;
 
     Array<BulletParticle> blist;
-    Sound srsSound;
     long bulletDelay;
 
     public MainMenuScreen(ProjectZurvivalMain gam) {
         super(gam);
         this.setBG_Color(.15f,.2f,.15f,1);
 
-        this.blist = new Array();
-        srsSound = Gdx.audio.newSound(Gdx.files.internal("Sounds/Single Rifle Shot.mp3"));
-        bulletDelay = 80L;
+        this.blist = new Array();bulletDelay = 80L;
 
         title = new Image(game.util.GAME_WORLD_WIDTH/2,game.util.GAME_WORLD_HEIGHT*3/4,.2f,"Images/MainMenu/Title.png");
         newgame = new Image(game.util.GAME_WORLD_WIDTH/2, game.util.GAME_WORLD_HEIGHT*9/20, .2f, "Images/MainMenu/New Game.png");
@@ -100,7 +97,7 @@ public class MainMenuScreen extends BaseScreen{
         if(this.curTime >= this.lastTouchedTime + bulletDelay){
             this.lastTouchedTime = System.currentTimeMillis();
             this.blist.add(new BulletParticle(x, y));
-            srsSound.play(game.util.getSfx_Volume());
+            SoundManager.srsSound.play(Utility.getSfx_Volume());
         }
     }
 }

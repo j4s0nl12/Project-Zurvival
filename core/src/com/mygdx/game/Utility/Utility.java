@@ -78,11 +78,11 @@ public class Utility {
             Gdx.app.log("Utility", "setValue: " + key + " is invalid.");
     }
 
-    public float getBgm_Volume(){
+    public static float getBgm_Volume(){
         return master_volume * bgm_volume * volume_offset;
     }
 
-    public float getSfx_Volume(){
+    public static float getSfx_Volume(){
         return master_volume * sfx_volume * volume_offset;
     }
 

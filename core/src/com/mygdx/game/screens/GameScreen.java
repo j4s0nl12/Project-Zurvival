@@ -20,7 +20,7 @@ public class GameScreen extends BaseScreen{
         this.setBG_Color(.1f,.1f,.1f,1);
 
         this.stage = new Stage(game.camera.viewport);
-        player = new Player(game.util.GAME_WORLD_WIDTH/2, game.util.GAME_WORLD_HEIGHT/2, "Images/Objects/HumanTmp.png");
+        player = new Player(game.util.GAME_WORLD_WIDTH/2, game.util.GAME_WORLD_HEIGHT/2);//, "Images/Objects/HumanTmp.png");
         this.stage.addActor(player.leftStick.getTouchpad());
         this.stage.addActor(player.rightStick.getTouchpad());
         this.stage.addActor(player.hpBar.getProgressBar());

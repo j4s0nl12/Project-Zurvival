@@ -18,12 +18,17 @@ public class GameObject {
     public boolean isMovingX;
     public boolean isMovingY;
     public Sprite sprite;//Main body for hit box
+    public boolean toDestroy;
 
-    public GameObject(float posX, float posY, String imgFile){
+    public GameObject(float posX, float posY){//, String imgFile){
         this.pos = new Vector2(posX,posY);
         this.vel = new Vector2();
         this.isMovingX = false;
         this.isMovingY = false;
+        this.toDestroy = false;
+    }
+
+    public void setSprite(String imgFile){
         this.sprite = new Sprite(new Texture(imgFile));
         this.sprite.setPosition(this.pos.x,this.pos.y);
     }
@@ -68,5 +73,11 @@ public class GameObject {
             this.vel.y = 0;
         }
         this.sprite.setPosition(this.pos.x, this.pos.y);
+    }
+
+    public void outOfBorder(){
+        if (this.pos.x < 0 || this.pos.x > Utility.GAME_WORLD_WIDTH - this.sprite.getWidth() ||
+            this.pos.y < 0 || this.pos.y > Utility.GAME_WORLD_HEIGHT - this.sprite.getHeight())
+            this.toDestroy = true;
     }
 }
