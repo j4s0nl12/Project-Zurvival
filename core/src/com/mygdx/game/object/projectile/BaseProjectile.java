@@ -37,7 +37,8 @@ public class BaseProjectile extends GameObject {
     }
 
     public boolean checkCollision(GameObject o){
-        if(this.sprite.getBoundingRectangle().overlaps(o.sprite.getBoundingRectangle()))
+        if(this.sprite.getBoundingRectangle().overlaps(o.sprite.getBoundingRectangle()) &&
+                !this.hitObjects.contains(o,true))
             return true;
         return false;
     }
