@@ -3,6 +3,7 @@ package com.mygdx.game.object;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Vector2;
 import com.mygdx.game.utility.Utility;
 
@@ -30,12 +31,21 @@ public class GameObject {
 
     public void setSprite(String imgFile){
         this.sprite = new Sprite(new Texture(imgFile));
-        this.sprite.setPosition(this.pos.x,this.pos.y);
+        this.sprite.setPosition(this.pos.x, this.pos.y);
+    }
+
+    public Circle getBoundingCircle(float radiusScale){
+        float tmp = this.sprite.getHeight();
+        if(this.sprite.getWidth() > this.sprite.getHeight()){
+            tmp = this.sprite.getWidth();
+        }
+        Vector2 offsetPos = this.getPosWithOffset();
+        return new Circle(offsetPos.x, offsetPos.y, tmp*radiusScale);
     }
 
     public void update(float delta){
         this.pos.add(this.vel);
-        this.sprite.setPosition(this.pos.x,this.pos.y);
+        this.sprite.setPosition(this.pos.x, this.pos.y);
     }
 
     public void draw(SpriteBatch batch){
@@ -55,6 +65,10 @@ public class GameObject {
         this.vel.add(frict.scl(delta));
         if(this.vel.dot(old) < 0)
             this.vel = new Vector2();
+    }
+
+    public Vector2 getPosWithOffset(){
+        return this.pos.cpy().add(this.sprite.getWidth()/2, this.sprite.getHeight()/2);
     }
 
     public void simpleBorder() {

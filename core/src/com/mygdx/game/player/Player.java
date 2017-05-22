@@ -50,7 +50,7 @@ public class Player extends GameObject {
 
         //Shooting stuff
         this.pm = new ProjectileManager();
-        this.shotDelay = 40L;
+        this.shotDelay = 80L;
         this.lastShot = System.currentTimeMillis() - this.shotDelay;
     }
 
@@ -65,6 +65,7 @@ public class Player extends GameObject {
 
         //Movement (Left Stick)
         Vector2 tmp = new Vector2(this.leftStick.getPercentX(), this.leftStick.getPercentY());
+        tmp.nor();
         tmp.scl(this.accelIncr);
         this.accel(tmp,delta);
 
@@ -93,15 +94,26 @@ public class Player extends GameObject {
 
     public void shoot(float x, float y){
         if(System.currentTimeMillis() >= this.lastShot + this.shotDelay) {
+            //Get Direction
             Vector2 dir = new Vector2(x, y);
+
+            //Create slight offset (Looks better with spray)
             float offset = .08f;
             Vector2 randOffset = new Vector2(MathUtils.random(-offset,offset), MathUtils.random(-offset,offset));
             dir.add(randOffset);
             dir.nor();
-            Vector2 pos = new Vector2(this.pos.x + this.sprite.getWidth()/2, this.pos.y + this.sprite.getHeight()/2);
-            pos.add(dir.scl(this.sprite.getHeight()));//Create projectile position
+
+            //Create bullet start position
+            Vector2 pos = this.getPosWithOffset();
+            pos.add(dir.scl(this.sprite.getHeight()*2/3));
+
+            //Create bullet
             this.pm.addProjectile(new Bullet(pos.x, pos.y, dir, this.angle));
+
+            //Play Sound
             SoundManager.srsSound.play(Utility.getSfx_Volume()/5);
+
+            //Set shoot timer
             this.lastShot = System.currentTimeMillis();
         }
     }

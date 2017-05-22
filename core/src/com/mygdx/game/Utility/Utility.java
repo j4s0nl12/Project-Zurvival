@@ -22,6 +22,9 @@ public class Utility {
     public static String bgm_volume_str = "bgm_volume";                     /**/
     public static float sfx_volume;                                         /**/
     public static String sfx_volume_str = "sfx_volume";                     /**/
+                                                                            /**/
+    public static int highscore;                                            /**/
+    public static String highscore_str = "highscore";                       /**/
     /**************************************************************************/
 
     public Utility() {
@@ -64,6 +67,14 @@ public class Utility {
             pref.flush();
         }else {
             sfx_volume = pref.getFloat(sfx_volume_str);
+        }
+        //HighScore
+        if (!pref.contains(highscore_str)){
+            highscore = 0;
+            pref.putInteger(highscore_str, highscore);
+            pref.flush();
+        }else{
+            highscore = pref.getInteger(highscore_str);
         }
     }
 

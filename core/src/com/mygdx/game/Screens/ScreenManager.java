@@ -35,6 +35,12 @@ public class ScreenManager {
         currentScreen = screenIdx;
     }
 
+    public void goToNewGameScreen(){
+        this.screenList.removeIndex(GAMESCREEN);
+        this.screenList.insert(GAMESCREEN,new GameScreen(game));
+        this.goToScreen(GAMESCREEN);
+    }
+
     public BaseScreen getScreen(int screenIdx){
         return screenList.get(screenIdx);
     }

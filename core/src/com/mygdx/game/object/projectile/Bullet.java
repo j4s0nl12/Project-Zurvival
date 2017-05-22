@@ -10,17 +10,7 @@ public class Bullet extends BaseProjectile{
         super(posX, posY, dir, .4f, angle);
         this.setSprite("Images/Objects/bulletTmp.png");
         this.dmg = 1;
-        this.pierceCt = 3;
+        this.pierceCt = 1;
         this.hitObjects = new Array();
-    }
-
-    public void addHitObject(GameObject o){
-        this.hitObjects.add(o);
-    }
-
-    public boolean checkIfHitObject(GameObject o){
-        if(this.hitObjects.contains(o, true))
-            return true;
-        return false;
     }
 }

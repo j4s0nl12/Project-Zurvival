@@ -67,7 +67,8 @@ public class MainMenuScreen extends BaseScreen{
         fireBullet(x,y);
 
         if(newgame.isTouched(x,y)){
-            game.sm.goToScreen(game.sm.GAMESCREEN);
+            //game.sm.goToScreen(game.sm.GAMESCREEN);
+            game.sm.goToNewGameScreen();
         }
 
         if(options.isTouched(x,y)){

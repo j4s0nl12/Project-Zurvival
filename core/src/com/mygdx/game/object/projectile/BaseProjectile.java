@@ -17,6 +17,7 @@ public class BaseProjectile extends GameObject {
         this.angle = angle;
         this.pierceCt = 0;
         this.pierceInf = false;
+        this.hitObjects = new Array();
     }
 
     @Override
@@ -29,6 +30,10 @@ public class BaseProjectile extends GameObject {
     public void update(float delta){
         super.update(delta);
         this.outOfBorder();
+    }
+
+    public void addHitObject(GameObject o){
+        this.hitObjects.add(o);
     }
 
     public boolean checkCollision(GameObject o){
