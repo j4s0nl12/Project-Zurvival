@@ -1,10 +1,14 @@
 package com.mygdx.game.player;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
+import com.mygdx.game.object.Camera;
 import com.mygdx.game.object.GameObject;
 import com.mygdx.game.object.projectile.Bullet;
 import com.mygdx.game.object.projectile.ProjectileManager;
@@ -76,10 +80,24 @@ public class Player extends GameObject {
                 this.shoot(this.rightStick.getPercentX(), this.rightStick.getPercentY());
         }
 
+        //Movement(Keyboard)
+        if(Gdx.input.isKeyPressed(Input.Keys.W)){
+            this.accel(new Vector2(0,this.accelIncr), delta);
+        }
+        if(Gdx.input.isKeyPressed(Input.Keys.S)){
+            this.accel(new Vector2(0,-this.accelIncr), delta);
+        }
+        if(Gdx.input.isKeyPressed(Input.Keys.A)){
+            this.accel(new Vector2(-this.accelIncr,0), delta);
+        }
+        if(Gdx.input.isKeyPressed(Input.Keys.D)){
+            this.accel(new Vector2(this.accelIncr,0), delta);
+        }
+
         super.update(delta);
         this.hpBar.setValue(this.hp);
         this.simpleBorder();
-        if(!this.leftStick.getTouchpad().isTouched())
+        if(!this.leftStick.getTouchpad().isTouched() && !Gdx.input.isKeyPressed(Input.Keys.ANY_KEY))
             this.friction(delta,this.accelIncr*2);
     }
 
